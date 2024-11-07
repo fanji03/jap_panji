@@ -7,6 +7,12 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\LaporanPublikController;
+use App\Http\Controllers\VerifikasiLaporanController;
+use App\Http\Controllers\SeluruhLaporanController;
+use App\Http\Controllers\LaporanDiprosesController;
+use App\Http\Controllers\LaporanSelesaiController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,3 +64,38 @@ Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name
 
 Route::get('/laporanpublik', [LaporanPublikController::class, 'index'])->name('laporanpublik.index');
 
+// Rute admin verifikasi laporan
+Route::get('verifikasi-laporan', [VerifikasiLaporanController::class, 'index'])->name('verifikasi.laporan.index');
+Route::post('verifikasi-laporan/verifikasi/{id}', [VerifikasiLaporanController::class, 'verifikasi'])->name('verifikasi.laporan.verifikasi');
+Route::delete('verifikasi-laporan/hapus/{id}', [VerifikasiLaporanController::class, 'hapus'])->name('verifikasi.laporan.hapus');
+
+
+// Rute admin seluruh laporan
+//Route::get('/seluruh-laporan', [SeluruhLaporanController::class, 'index'])->name('admin.seluruh-laporan');
+Route::get('/admin/seluruh-laporan', [SeluruhLaporanController::class, 'index'])->name('admin.seluruh_laporan');
+
+
+// Rute admin laporan diproses
+//Route::get('/admin/laporan-diproses', [LaporanDiprosesController::class, 'diproses'])->name('admin.laporan_diproses');
+Route::get('/laporan-diproses', [LaporanDiprosesController::class, 'diproses'])->name('laporan.diproses');
+
+// Rute laporan selesai
+//Route::get('/admin/laporan-selesai', [LaporanSelesaiController::class, 'index'])->name('laporan.selesai');
+//Route::post('/admin/laporan-selesai/selesai/{id}', [LaporanSelesaiController::class, 'selesai'])->name('laporan.selesai.update');
+//Route::delete('/admin/laporan-selesai/hapus/{id}', [LaporanSelesaiController::class, 'hapus'])->name('laporan.selesai.delete');
+
+//Route::get('/admin/laporan-selesai', [LaporanSelesaiController::class, 'index'])->name('admin.laporan.selesai');
+
+// Mengubah status laporan menjadi "Selesai Diproses" di dalam folder admin
+//Route::put('/admin/laporan-selesai/{id}/selesai', [LaporanSelesaiController::class, 'selesai'])->name('admin.laporan.selesai.selesai');
+
+// Menghapus laporan di dalam folder admin
+//Route::delete('/admin/laporan-selesai/{id}', [LaporanSelesaiController::class, 'hapus'])->name('admin.laporan.selesai.hapus');
+
+//Route::get('/admin/laporan-selesai', [LaporanSelesaiController::class, 'index'])->name('laporan.selesai.index');
+//Route::post('/admin/laporan-selesai/selesai/{id}', [LaporanSelesaiController::class, 'selesai'])->name('laporan.selesai.update');
+//Route::delete('/admin/laporan-selesai/hapus/{id}', [LaporanSelesaiController::class, 'hapus'])->name('laporan.selesai.delete');
+//Route::delete('/laporan-selesai/hapus/{id}', [LaporanSelesaiController::class, 'hapus'])->name('laporan.selesai.delete');
+Route::get('/admin/laporan-selesai', [LaporanSelesaiController::class, 'index'])->name('laporan.index');
+Route::get('/admin/laporan-selesai/{id}/selesai', [LaporanSelesaiController::class, 'selesai'])->name('laporan.selesai');
+Route::get('/admin/laporan-selesai/{id}/hapus', [LaporanSelesaiController::class, 'hapus'])->name('laporan.hapus');
